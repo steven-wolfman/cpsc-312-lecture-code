@@ -1,2 +1,2 @@
 language = "haskell"
-run = "cd ~/cpsc-312-lecture-code && ghci"
+run = "cd ~/* && cabal repl"
