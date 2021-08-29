@@ -1,0 +1,9 @@
+cabal: Entering directory '/tmp/cabal-tmp-106/random-1.2.0'
+Configuring random-1.2.0...
+Preprocessing library for random-1.2.0..
+Building library for random-1.2.0..
+[1 of 3] Compiling System.Random.Internal ( src/System/Random/Internal.hs, dist/dist-sandbox-b3c84045/build/System/Random/Internal.o )
+[2 of 3] Compiling System.Random    ( src/System/Random.hs, dist/dist-sandbox-b3c84045/build/System/Random.o )
+[3 of 3] Compiling System.Random.Stateful ( src/System/Random/Stateful.hs, dist/dist-sandbox-b3c84045/build/System/Random/Stateful.o )
+Installing library in /home/runner/cpsc-312-lecture-code-1/.cabal-sandbox/lib/x86_64-linux-ghc-8.6.5/random-1.2.0-34VvsK8CpZG1VOu2QdV8qX
+cabal: Leaving directory '/tmp/cabal-tmp-106/random-1.2.0'
