@@ -4,7 +4,17 @@
 Welcome to CPSC 312!
 ====================
 
-Let's start with a [song](https://docs.google.com/presentation/d/e/2PACX-1vRIOIlcVTVhRivDNYGglEYmkUniqWl6OIz8-BTyRA2-VNTF68jp3YeaIeYQVSG5xhmzKSvmyMYsjSg6/pub?start=false&loop=false&delayms=60000&slide=id.p1).
+A quick note on masks: 
+Masks are mandated in class. I'm immune suppressed.
+For me and others at-risk or close to those who are at-risk,
+please wear your mask, including over your nose.
+
+However, there are medical circumstances that merit exemptions.
+To seek such accommodation, please contact the Centre for
+Accessibility at info.accessibility@ubc.ca.
+
+Now, let's really start with a 
+[song](https://docs.google.com/presentation/d/e/2PACX-1vRIOIlcVTVhRivDNYGglEYmkUniqWl6OIz8-BTyRA2-VNTF68jp3YeaIeYQVSG5xhmzKSvmyMYsjSg6/pub?start=false&loop=false&delayms=60000&slide=id.p1).
 
 <!-- Ukulele chords: C F Am G, over and over! -->
 
@@ -221,11 +231,14 @@ We'll try to show off two interesting features of Prolog:
 Class Notes for Today
 =====================
 
-1. Let's spend a few minutes with the [Syllabus](/syllabus.html). (Especially important: **do not come to class if you are sick!!**)
-2. Assignment 1 is due TODO
-3. Quiz 1 is coming up on Friday September 17 (during class time).
-4. To reduce Covid transmission risk, please sit in the same area each lecture when possible. 
-5. Before next class:
+1. Let's spend a few minutes with the [Syllabus](/syllabus.html).
+   (Especially important: **do not come to class if you are sick!!**)
+2. Assignment 1 is due TODO on PrairieLearn.
+3. Quiz 1 is coming up on Friday September 17 (during class time). Also on PrairieLearn.
+4. "In-class participation" is also on PrairieLearn. We will be posting a "practice quiz"
+   that is both similar to your upcoming quiz and to our in-class exercises.
+5. To reduce Covid transmission risk, please sit in the same area each lecture when possible. 
+6. Before next class:
    + access PrairieLearn and Piazza from the [Resources](/resources.html) page
    + get Haskell set up so you can try things out; the [Resources](/resources.html) page has help
    + work through [CIS 194 Lecture 1](https://www.cis.upenn.edu/~cis194/spring13/lectures/01-intro.html) up to the "GHCi" section
