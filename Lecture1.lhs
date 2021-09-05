@@ -1,8 +1,11 @@
+---
+number: 1
+title: Welcome to CPSC 312!
+published: 2021-09-08
+---
+
 > import System.Random
 > import Data.List
-
-Welcome to CPSC 312!
-====================
 
 A quick note on masks: 
 Masks are mandated in class. I'm immune suppressed.
@@ -14,9 +17,7 @@ To seek such accommodation, please contact the Centre for
 Accessibility at info.accessibility@ubc.ca.
 
 Now, let's really start with a 
-[song](https://docs.google.com/presentation/d/e/2PACX-1vRIOIlcVTVhRivDNYGglEYmkUniqWl6OIz8-BTyRA2-VNTF68jp3YeaIeYQVSG5xhmzKSvmyMYsjSg6/pub?start=false&loop=false&delayms=60000&slide=id.p1).
-
-<!-- Ukulele chords: C F Am G, over and over! -->
+[song](https://www.cs.ubc.ca/~wolf/songs/like_it_called_on_me_quicksort.html).
 
 Showing Off in Haskell
 ======================
