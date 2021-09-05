@@ -234,10 +234,11 @@ Class Notes for Today
 
 1. Let's spend a few minutes with the [Syllabus](/syllabus.html).
    (Especially important: **do not come to class if you are sick!!**)
-2. Assignment 1 is due TODO on PrairieLearn.
-3. Quiz 1 is coming up on Friday September 17 (during class time). Also on PrairieLearn.
-4. "In-class participation" is also on PrairieLearn. We will be posting a "practice quiz"
-   that is both similar to your upcoming quiz and to our in-class exercises.
+2. TODO: "In-class Exercises 1" is on PrairieLearn and due Thu Sep 16.
+   Grading is exremely lenient (see the "max points" field on each question).
+   Use this to learn in class and prepare for the quiz!
+3. Quiz 1 is coming up on Friday September 17 (during class time).
+4. Assignment 1 is due Sep 23 on PrairieLearn. Submit by Sep 16 for a chance at some extra credit.
 5. To reduce Covid transmission risk, please sit in the same area each lecture when possible. 
 6. Before next class:
    + access PrairieLearn and Piazza from the [Resources](/resources.html) page
