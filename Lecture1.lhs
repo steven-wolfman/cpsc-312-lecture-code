@@ -2,6 +2,7 @@
 number: 1
 title: Welcome to CPSC 312!
 published: 2021-09-08
+exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845
 ---
 
 > import System.Random
