@@ -53,7 +53,7 @@ To quick sort a list:
    followed by a list containing just `p`, followed by
    the quick-sorted `>= p` list.
 
-(Let's draw a picture.)
+(Like the song!)
 
 Quicksort in Haskell
 --------------------
@@ -75,15 +75,16 @@ What did we see? Haskell:
 Test Data for Quicksort
 -----------------------
 
-**Let's test `qsort` a bit: on `[]`, on `[2, 4, 6, 0, 1]`, and on `"mindblowing"`.**
-**We'll use `ghci` for its REPL (read-eval-print-loop) to try these out.**
+Let's test `qsort` a bit: on `[]`, on `[2, 4, 6, 0, 1]`, and on `"mindblowing"`.
+We'll use `ghci` for its REPL (read-eval-print-loop) to try these out.
+(*Exercise!*)
 
 Next, let's try `qsort` on something bigger.
 We'll need some input to call it on:
 
 > -- | @genList cap seed@ returns an unending list of (pseudo-)random
-> -- @Int@s in the range @[0, cap)@, using @seed@ for the random generator.
-> -- Don't worry about this code for now!
+> -- @Int@s in the range @[0, cap)@, using @seed@ for the random
+> -- generator. (Don't worry about the implementation for now!)
 > genList :: Int -> Int -> [Int]
 > genList cap seed = map (`mod` cap) (randoms (mkStdGen seed))
 
@@ -92,9 +93,11 @@ We could try out `qsort` with:
 > infResults :: [Int]
 > infResults = qsort (genList 10000 0)
 
-**But wait. How many elements are we sorting?!**
-**Try `infResults` at the `ghci` REPL.**
+**But wait.** How many elements are we sorting?!
+Try `infResults` at the `ghci` REPL.
 (Wait... why didn't that run forever _before_ we typed `infResults`?)
+
+(*Exercise!*)
 
 Finite Test Data
 ----------------
@@ -122,7 +125,9 @@ Instead, get just the last element of `bigList`:
 last bigList
 ```
 
-**How long did that take? Try `last bigList` again. How long did it take the second time?**
+How long did that take?
+Try `last bigList` again. How long did it take the second time?
+(*Exercise!*)
 
 Haskell uses _lazy evaluation_. Loosely: it evaluates expressions
 only when forced to, e.g., by you the user. (Once it evaluates a 
@@ -132,14 +137,14 @@ Laziness Goes Deep
 ------------------
 
 Let sort `bigList` but just look at the last result.
-**Run `last (qsort bigList)`.**
+Run `last (qsort bigList)`.
 
-**How long did that take?**
+How long did that take?
 
-**How about `take 100 (qsort bigList)`?** (That's the first 100
+How about `take 100 (qsort bigList)`? (That's the first 100
 elements of the sorted list.) How long did that take? Why?!?
 
-(Was it caching? Let's guess that it _was_. How could you falsify that guess?)
+(*Exercise!*)
 
 Showing off in Prolog
 =====================
@@ -176,8 +181,8 @@ Prolog _really_ doesn't do normal "functions".
 
 `append` doesn't _return_ the result of appending two lists.
 Instead, it is a (logical) predicate of three values that 
-**describes the circumstances under which**
-**the third value is the result of appending the first two**.
+**describes the relationship in which the third value is the
+result of appending the first two**.
 
 The Haskell code above kind of tells us our cases.
 `append(Xs, Ys, Zs)` is true when:
@@ -205,6 +210,8 @@ append(    ,    ,    ) :-           .
 append(    ,    ,    ) :-           .
 ```
 
+(*Exercise!*)
+
 What a Predicate Can Do, Forwards and Backwards
 -----------------------------------------------
 
@@ -217,6 +224,8 @@ is the result of appending `Xs` and `Ys`.
 
 **So, start by trying `append([1, 2], [3, 4, 5], Zs).`**
 **Then, start asking for stranger things.**
+
+(*Exercise!*)
 
 We'll try to show off two interesting features of Prolog:
 
@@ -235,21 +244,28 @@ Class Notes for Today
 
 1. Let's spend a few minutes with the [Syllabus](/syllabus.html).
    (Especially important: **do not come to class if you are sick!!**)
-2. TODO: "In-class Exercises 1" is on PrairieLearn and due Thu Sep 16.
-   Grading is exremely lenient (see the "max points" field on each question).
-   Use this to learn in class and prepare for the quiz!
+2. [In-class Exercises 1](https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845)
+   is on PrairieLearn and due Thu Sep 16. If you get something wrong, just
+   try it again. Use these exercises to learn in class and prepare for the quiz!
 3. Quiz 1 is coming up on Friday September 17 (during class time).
-4. Assignment 1 is due Sep 23 on PrairieLearn. Submit by Sep 16 for a chance at some extra credit.
+4. [Assignment 1](https://ca.prairielearn.com/pl/course_instance/2333/assessment/16806) 
+   is due Sep 23 on PrairieLearn. Submit by Sep 16 for a chance at some extra credit.
 5. To reduce Covid transmission risk, please sit in the same area each lecture when possible. 
 6. Before next class:
    + access PrairieLearn and Piazza from the [Resources](/resources.html) page
    + get Haskell set up so you can try things out; the [Resources](/resources.html) page has help
-   + work through [CIS 194 Lecture 1](https://www.cis.upenn.edu/~cis194/spring13/lectures/01-intro.html) up to the "GHCi" section
+   + work through [CIS 194 Lecture 1](https://www.cis.upenn.edu/~cis194/spring13/lectures/01-intro.html)
+     up to the "GHCi" section
+
+
+
+
+
 
 Appendix
 ========
 
-Monday Morning Haskell recently released a [In-Place QuickSort in Haskell](https://mmhaskell.com/blog/2021/8/20/quicksort-video) video. If you haven't already studied Haskell, the latter 2/3 of the video is challenging. If you want to give it a try, you can think of a "monad" _for this context_ as a special structure for assembling computations-that-produce-values-when-run that ensures you don't accidentally mistake those computations with the values they produce.
+Monday Morning Haskell recently released a [In-Place QuickSort in Haskell](https://mmhaskell.com/blog/2021/8/20/quicksort-video) video. If you haven't already studied Haskell, the latter 2/3 of the video is (very) challenging. If you want to give it a try, you can think of a "monad" _for this context_ as a special structure for assembling computations-that-produce-values-when-run that ensures you don't accidentally mistake those computations with the values they produce.
 
 Here are some longer/different versions of the code above.
 
