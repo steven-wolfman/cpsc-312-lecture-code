@@ -68,8 +68,12 @@ First, let's write Quicksort in Haskell. The first line is
 the signature. The second is the function definition... which
 is undefined so far. **We'll finish it!**
 
+> -- qsort xs returns xs but in sorted order.
 > qsort :: Ord a => [a] -> [a]
-> qsort _ = undefined
+> qsort [] = []
+> qsort (p:ps) = qsort [small | small <- ps, small < p] ++ 
+>                [p] ++
+>                qsort [large | large <- ps, large >= p]
 
 What did we see? Haskell:
 
@@ -84,6 +88,9 @@ Test Data for Quicksort
 Let's test `qsort` a bit: on `[]`, on `[2, 4, 6, 0, 1]`, and on `"mindblowing"`.
 We'll use `ghci` for its REPL (read-eval-print-loop) to try these out.
 (*Exercise!*)
+
+
+**Note: we stopped here on day 1.**
 
 Next, let's try `qsort` on something bigger.
 We'll need some input to call it on:
