@@ -8,17 +8,21 @@ exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845
 > import System.Random
 > import Data.List
 
-A quick note on masks: 
-Masks are mandated in class. I'm immune suppressed.
-For me and others at-risk or close to those who are at-risk,
-please wear your mask, including over your nose.
+Quick Note on Health and Masks
+==============================
+
+Masks are mandated in class. I'm immune suppressed.  For me and others
+at-risk or close to those who are at-risk, please wear your mask,
+including over your nose.
 
 However, there are medical circumstances that merit exemptions.
 To seek such accommodation, please contact the Centre for
 Accessibility at info.accessibility@ubc.ca.
 
-Now, let's really start with a 
-[song](https://www.cs.ubc.ca/~wolf/songs/like_it_called_on_me_quicksort.html).
+While we're on the subject: please get vaccinated if you can (it's
+another line of defence for those around you who cannot!) and please
+do not come to class if you're sick (there are so many good online
+options for us!).
 
 Showing Off in Haskell
 ======================
@@ -53,7 +57,9 @@ To quick sort a list:
    followed by a list containing just `p`, followed by
    the quick-sorted `>= p` list.
 
-(Like the song!)
+Now, we _could_ read all that. Or, we could
+[sing](https://www.cs.ubc.ca/~wolf/songs/like_it_called_on_me_quicksort.html)
+it instead.
 
 Quicksort in Haskell
 --------------------
