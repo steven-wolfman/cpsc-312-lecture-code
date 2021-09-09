@@ -8,6 +8,23 @@ exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845
 > import System.Random
 > import Data.List
 
+Today's Notes, 2021/09/10
+=========================
+1. Quick course status update (waitlist, rapidly changing world, etc.)
+2. [In-class Exercises 1](https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845)
+   is on PrairieLearn and due Thu Sep 16. If you get something wrong, just
+   try it again. Use these exercises to learn in class and prepare for the quiz!
+3. Quiz 1 is coming up on Friday September 17 (during class time).
+4. To prepare for that, you must fill out [this survey](https://canvas.ubc.ca/courses/78036/quizzes/416458) about whether you have a device for the quiz by end of day Monday. (Waitlisted students: working on a solution for you now!)
+5. [Assignment 1](https://ca.prairielearn.com/pl/course_instance/2333/assessment/16806)
+   is due Sep 23 on PrairieLearn. Submit by Sep 16 for a chance at some extra credit.
+6. To reduce Covid transmission risk, please sit in the same area each lecture when possible.
+7. Before next class:
+   + Finish the Lecture 1 in-class exercises, if you haven't already!
+   + work through the rest of
+     [CIS 194 Lecture 1](https://www.cis.upenn.edu/~cis194/spring13/lectures/01-intro.html)
+
+
 Quick Note on Health and Masks
 ==============================
 
@@ -252,8 +269,8 @@ We'll try to show off two interesting features of Prolog:
   (You can even ask Prolog to keep searching after
   it finds the first set of conditions that work.) 
 
-Class Notes for Today
-=====================
+Today's Notes, 2021/09/08
+=========================
 
 1. Let's spend a few minutes with the [Syllabus](/syllabus.html).
    (Especially important: **do not come to class if you are sick!!**)
