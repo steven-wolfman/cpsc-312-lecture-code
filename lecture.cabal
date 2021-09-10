@@ -1,0 +1,19 @@
+name:                lecture
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/steven-wolfman/cpsc-312-lecture-code#readme
+author:              Steve Wolfman
+maintainer:          wolf@cs.ubc.ca
+copyright:           2021 Steve Wolfman
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable lecture
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  ghc-options:         -threaded
+  build-depends:       base >= 4.7 && < 5,
+                       random

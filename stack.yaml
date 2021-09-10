@@ -1,0 +1,6 @@
+# This is the resolver used by our auto-grader as we create this.
+# You may want to use a newer resolver!
+resolver: lts-17.9
+
+packages:
+- .
