@@ -236,8 +236,8 @@ anything else is just an atom (like a symbol or a bit like a string).
 ```prolog
 % Fill in the blanks on append/3 so that append(Xs, Ys, Zs)
 % is true if appending together Xs and Ys results in Zs.
-append(    ,    ,    ) :-           .
-append(    ,    ,    ) :-           .
+append([], Ys, Ys).
+append([X|Xs], Ys, [X|Zs]) :- append(Xs, Ys, Zs).
 ```
 
 (*Exercise!*)

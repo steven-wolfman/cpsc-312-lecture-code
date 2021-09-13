@@ -30,7 +30,7 @@ Check the other variables' types and values as well.
 
 Let's explore one more type:
 
-> s = "<insert fun phrase here>"
+> s = "Hello World!"
 > doubleS = s ++ s
 
 Strings in Haskell are lists of characters (written `[Char]`).[^strings]
@@ -112,7 +112,7 @@ Define a function that adds one to an `Int`
 -------------------------------------------
 
 > add1 :: Int -> Int
-> add1 n = undefined -- Fill me in!
+> add1 n = n + 1 
 
 There's actually a built-in function that does the same. We could also
 just put *its* value into our function:
@@ -123,6 +123,8 @@ just put *its* value into our function:
 
 Finding the `n`th Odd Number
 ----------------------------
+
+**Monday 13 Sep 2021: Stopped here in class. Left draft of `nthOdd` as an exercise.**
 
 Now, define a function that produces the `n`th odd number:
 
@@ -178,8 +180,8 @@ We can use any type of data in our cases, like bools:
 
 Now, redefine `oneTrue` (as `oneTrue'`) except by cases instead:
 
-> oneTrue :: Bool -> Bool -> Bool -> Bool
-> oneTrue _ _ _ = undefined
+> oneTrue' :: Bool -> Bool -> Bool -> Bool
+> oneTrue' _ _ _ = undefined
 
 
 Exercise
