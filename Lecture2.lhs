@@ -134,7 +134,7 @@ Now, define a function that produces the `n`th odd number:
 > -- >>> nthOdd 2
 > -- 3
 > nthOdd :: Int -> Int
-> nthOdd n = undefined
+> nthOdd n = 2*n - 1
 
 (*Exercise!*)
 
@@ -150,8 +150,9 @@ of three Boolean values is true. You'll want to use
 the `&&` (and), `||` (or), and `not` functions.
 
 > oneTrue :: Bool -> Bool -> Bool -> Bool
-> oneTrue b1 b2 b3 = undefined
-
+> oneTrue b1 b2 b3 = (b1 && not b2 && not b3) ||
+>                    (not b1 && b2 && not b3) ||
+>                    (not b1 && not b2 && b3)
 
 Building Farther Using Cases
 ----------------------------
@@ -164,6 +165,9 @@ are implemented in terms of pattern-matching:
 
 > myHead :: [a] -> a
 > myHead (x:_) = x
+
+> myTail :: [a] -> [a]
+> myTail (_:xs) = xs
 
 `(_:_)` matches a non-empty list. `(x:_)` does the same, but defines
 `x`'s value to be the head of the list.
@@ -181,8 +185,13 @@ We can use any type of data in our cases, like bools:
 Now, redefine `oneTrue` (as `oneTrue'`) except by cases instead:
 
 > oneTrue' :: Bool -> Bool -> Bool -> Bool
-> oneTrue' _ _ _ = undefined
+> oneTrue' True False False = True
+> oneTrue' False True False = True
+> oneTrue' False False True = True
+> oneTrue' _ _ _ = False
 
+
+> secondElt (_:x:_) = x
 
 Exercise
 --------
@@ -209,7 +218,8 @@ evaluating expressions until forced to.
 Let's use that to define **our own `if` expression**:
 
 > myIf :: Bool -> a -> a -> a
-> myIf condition thenArg elseArg = undefined
+> myIf True thenArg _ = thenArg
+> myIf False _ elseArg = elseArg
 
 
 Would this work in Java?
@@ -229,7 +239,7 @@ Let's try it in Haskell!
 
 > a = 0
 > b = 3
-> result = myIf (a /= 0) (b / a) 0
+> result = myIf (a /= 0) (b `div` a) 0
 
 Now type `result` in `ghci`.
 
@@ -280,15 +290,33 @@ each element in a list. Let's break it into cases, and then figure out the cases
 > -- we should get 2*x as the head and 
 > -- the result of doubleAll on xs as the tail.
 > doubleAll :: [Int] -> [Int]
-> doubleAll = undefined
+> doubleAll [] = []
+> doubleAll (x:xs) = 2*x : doubleAll xs
 
 
 Now, let's try to intersperse a new letter between each pair of letters in a string.
 For example, `intersperse c [letter1, letter2, letter3]` is 
 `[letter1, c, letter2, c, letter3]`.
 
+> -- >>> intersperse 'o' "www"
+> -- "wowow"
+>
+> -- >>> intersperse 'x' ""
+> -- ""
+>
+> -- >>> intersperse 'y' "p"
+> -- "p"
+>
+> -- >>> intersperse 'y' "ab"
+> -- "ayb"
+>
+> -- >>> intersperse 'z' "ab"
+> -- "azb"
+>
 > intersperse :: Char -> [Char] -> [Char]
-> intersperse c s = undefined
+> intersperse _ [] = []
+> intersperse _ [c] = [c]
+> intersperse i (c1:c2:cs) = c1:i:intersperse i (c2:cs)
 
 
 
