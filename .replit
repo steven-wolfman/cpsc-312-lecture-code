@@ -1,2 +1,2 @@
 language = "haskell"
-run = "cd ~/* && make repl"
+run = "cd ~/* && cabal repl"
