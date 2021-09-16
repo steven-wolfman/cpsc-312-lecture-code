@@ -16,5 +16,8 @@ library
                  , Lecture2
   build-depends:   base >= 4.7 && < 5
                  , random
-  build-tool-depends: doctest:doctest
+  -- NOTE(ejconlon) Enable this and commit to cabal sandbox to use doctest
+  -- `stack exec doctest -- --args --go --here` works but for cabal
+  -- I think you have to run the binary at `cabal list-bin doctest` or get it on your path.
+  -- build-tool-depends: doctest:doctest
   default-language: Haskell2010
