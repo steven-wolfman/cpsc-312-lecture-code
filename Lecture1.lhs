@@ -5,6 +5,7 @@ published: 2021-09-08
 exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845
 ---
 
+> module Lecture1 where
 > import System.Random
 > import Data.List
 

@@ -1,19 +1,23 @@
 name:                lecture
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            Code for CPSC 312 Lectures
+description:         Code for CPSC 312 Lectures
 homepage:            https://github.com/steven-wolfman/cpsc-312-lecture-code#readme
 author:              Steve Wolfman
 maintainer:          wolf@cs.ubc.ca
 copyright:           2021 Steve Wolfman
-category:            Web
+category:            Education
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-executable lecture
-  main-is:             Main.hs
-  default-language:    Haskell2010
-  ghc-options:         -threaded
-  build-depends:       base >= 4.7 && < 5,
-                       random
+library
+  exposed-modules: Lecture1
+                 , Lecture2
+  build-depends:   base >= 4.7 && < 5
+                 , random
+  -- NOTE(ejconlon) Enable this and commit to cabal sandbox to use doctest
+  -- `stack exec doctest -- --args --go --here` works but for cabal
+  -- I think you have to run the binary at `cabal list-bin doctest` or get it on your path.
+  -- build-tool-depends: doctest:doctest
+  default-language: Haskell2010

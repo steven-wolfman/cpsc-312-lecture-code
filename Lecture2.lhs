@@ -5,6 +5,8 @@ published: 2021-09-10
 exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16845
 ---
 
+> module Lecture2 where
+
 (Note: no strange imports this time. Plain old `ghci` should load this file just fine.)
 
 Playing With Some Building Blocks
