@@ -83,7 +83,31 @@ let's finish the second together:
 > -- | Upsize the given size to be one larger (or the same for the largest size).
 > upsize :: TimsSize -> TimsSize
 > upsize ExtraSmall = Small
+> upsize Small = Medium
+> upsize Medium = Large
 > upsize _ = ExtraLarge
+
+This is a digression about lists and how they're essentially data types
+(that cheat on syntax) and how `head` is dangerous and a LIEEEEEEE.
+
+```haskell
+head :: [a] -> a
+head (x:_) = x
+
+data [a] = []
+         | a : [a]
+```
+
+This is also a digression:
+
+```haskell
+(||) :: Bool -> Bool -> Bool
+True || _ = True
+_ || True = True
+_ || _ = False
+```
+
+Back to regularly scheduled programming.
 
 Your turn to work on creating a new data type and a function to operate on it.
 
@@ -110,7 +134,9 @@ We can use both data constructors in pattern matching. Let's write a function to
 a person needs to undergo regular testing given their vaccination status:
 
 > needsTesting :: VaccinationDeclaration -> Bool 
-> needsTesting = undefined
+> needsTesting Undeclared = True
+> needsTesting (Declared False) = True
+> needsTesting _ = False
 
 
 
@@ -129,6 +155,7 @@ Here's a handy `UkeTune` value:
 > perfectTune :: UkeTune
 > perfectTune = UkeTune 392 262 330 440
 
+TODO: start next time!
 
 We can (of course?) assemble larger types out of our smaller types. The following
 isn't particularly meaningful, but it shows how we can use everything we've learned
