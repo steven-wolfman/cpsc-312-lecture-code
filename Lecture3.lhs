@@ -211,10 +211,10 @@ Here's are some lists:
 
 Here they are as sparse lists:
 
-> emptySL, twoEltSL, manyEltSL :: SparseList
-> emptySL = Empty
-> twoEltSL = SkipAndRest 2 Empty
-> manyEltSL = OneAndRest 2.5 (OneAndRest 1 (SkipAndRest 1 (OneAndRest 3.2 (SkipAndRest 3 (OneAndRest 1 Empty)))))
+> slEmpty, slTwoElt, slManyElt :: SparseList
+> slEmpty = Empty
+> slTwoElt = SkipAndRest 2 Empty
+> slManyElt = OneAndRest 2.5 (OneAndRest 1 (SkipAndRest 1 (OneAndRest 3.2 (SkipAndRest 3 (OneAndRest 1 Empty)))))
 
 
 
@@ -239,8 +239,8 @@ It should never have a `OneAndRest 0 ...`, and it should never have two consecut
 `SparseList x (SparseList y ...)`, since those could just be replaced by
 `SparseList (x+y) ...`.
 
-*Two exercises:* Define the helper functions below. Think in cases! `zeroToSkipSL`
-is easier than `compactSL`. You may assume that all `SkipAndRest` counts are positive.
+*Two exercises:* Define the helper functions below. Think in cases! `slZeroToSkip`
+is easier than `slCompact`. You may assume that all `SkipAndRest` counts are positive.
 
 > slNormalize :: SparseList -> SparseList
 > slNormalize sl = slCompact (slZeroToSkip sl)
