@@ -82,7 +82,8 @@ let's finish the second together:
 >
 > -- | Upsize the given size to be one larger (or the same for the largest size).
 > upsize :: TimsSize -> TimsSize
-> upsize _ = undefined
+> upsize ExtraSmall = Small
+> upsize _ = ExtraLarge
 
 Your turn to work on creating a new data type and a function to operate on it.
 
@@ -97,18 +98,18 @@ maybe you want to represent a person's vaccination declaration status:
 
 > -- | Either declared whether they are vaccinated (True or False)
 > -- or not yet declared.
-> data VaccineDeclaration = Declared Bool 
->                         | Undeclared
+> data VaccinationDeclaration = Declared Bool 
+>                             | Undeclared
 >   deriving (Eq, Show)
 
 This creates two data constructors. One (`Undeclared`) is also a value of type
-`VaccineDeclaration` as above. The other `Declared` is also a function. You give
-it a `Bool`, and it constructs a `VaccineDeclaration` value.
+`VaccinationDeclaration` as above. The other `Declared` is also a function. You give
+it a `Bool`, and it constructs a `VaccinationDeclaration` value.
 
 We can use both data constructors in pattern matching. Let's write a function to determine if 
 a person needs to undergo regular testing given their vaccination status:
 
-> needsTesting :: VaccineDeclaration -> Bool 
+> needsTesting :: VaccinationDeclaration -> Bool 
 > needsTesting = undefined
 
 
@@ -133,12 +134,12 @@ We can (of course?) assemble larger types out of our smaller types. The followin
 isn't particularly meaningful, but it shows how we can use everything we've learned
 so far as we create new types, including our own types, lists, tuples, and 
 even functions. The first case just has a `UkeTune` value. The second has a list of
-`VaccinationStatus`es. The third has a tuple of two `UkeTune`s and a function from
-`VaccinationStatus` to `UkeTune`. (Which.. seems like an interesting function.)
+`VaccinationDeclaration`es. The third has a tuple of two `UkeTune`s and a function from
+`VaccinationDeclaration` to `UkeTune`. (Which.. seems like an interesting function.)
 
 > data UkunationStatus = Uke UkeTune
->                      | Vaxes [VaccinationStatus]
->                      | ThisIsJustSilly (UkeTune, UkeTune) (VaccinationStatus -> UkeTune) 
+>                      | Vaxes [VaccinationDeclaration]
+>                      | ThisIsJustSilly (UkeTune, UkeTune) (VaccinationDeclaration -> UkeTune) 
 
 
 Let's do some exercises defining and using this sort of algebraic data type in Haskell!
