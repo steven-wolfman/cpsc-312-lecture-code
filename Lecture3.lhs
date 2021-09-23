@@ -155,8 +155,6 @@ Here's a handy `UkeTune` value:
 > perfectTune :: UkeTune
 > perfectTune = UkeTune 392 262 330 440
 
-TODO: start next time!
-
 We can (of course?) assemble larger types out of our smaller types. The following
 isn't particularly meaningful, but it shows how we can use everything we've learned
 so far as we create new types, including our own types, lists, tuples, and 
@@ -206,7 +204,7 @@ Here's are some lists:
 
 > emptyL, twoEltL, manyEltL :: [Double]
 > emptyL = []
-> twoEltL = [0, 0]
+> twoEltL = 0 : 0 : []
 > manyEltL = [2.5, 1, 0, 3.2, 0, 0, 0, 1]
 
 Here they are as sparse lists:
@@ -223,15 +221,27 @@ Functions on Recursive Data Types
 
 Let's practice defining some recursive functions on sparse lists:
 
+```haskell
+data SparseList = Empty
+                | OneAndRest Double SparseList
+                | SkipAndRest Int SparseList
+```
+
 > -- | Produces a regular list from a sparse list.
 > toList :: SparseList -> [Double]
-> toList = undefined
-
+> toList Empty = []
+> toList (OneAndRest d sl) = d : toList sl
+> toList (SkipAndRest n sl) | n > 1 = 0 : toList (SkipAndRest (n-1) sl)
+>                           | otherwise = 0 : toList sl
+> -- Alternate version: toList (SkipAndRest n sl) = replicate (max 1 n) 0 ++ toList sl
 
 > -- | Produces a sparse list, but doesn't bother compressing
 > -- sequences of zeroes down. Just uses a SkipAndRest 1 for them.
 > fromList :: [Double] -> SparseList
-> fromList = undefined
+> fromList [] = Empty
+> fromList (0:ds) = SkipAndRest 1 (fromList ds)
+> fromList (d:ds) = OneAndRest d (fromList ds)
+ 
 
 
 It would be great to define a `toList` that produced a nice, compact `SparseList`.
