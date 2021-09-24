@@ -153,7 +153,7 @@ But for regular lists, `map` and `filter` are defined in the Haskell [Prelude](h
 for any type of list at all.
 
 + `map :: (a -> b) -> [a] -> [b]`: takes a function and applies it to each element of a list, collecting the results into a new list.
-  It's type is also `map :: (a -> b) -> ([a] -> [b])`: taking a function on elements and turning it into a function on lists!
+  Its type is also `map :: (a -> b) -> ([a] -> [b])`: taking a function on elements and turning it into a function on lists!
 + `filter :: (a -> Bool) -> [a] -> [a]`: takes a test (a Boolean-valued function, also known as a predicate) and a list and
   returns only those elements of the list that pass the test.
 
@@ -197,7 +197,7 @@ The type `ProVal Double` behaves like `ProValD` above. When we define a polymorp
 type, we list out its arguments (which are just lowercase identifiers) and then use them on
 the right to describe data constructors just like any type.
 
-Here are some examples:
+Here are some example values:
 
 > plainInt :: ProVal Int
 > plainInt = PV 7
