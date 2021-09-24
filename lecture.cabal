@@ -15,6 +15,7 @@ library
   exposed-modules: Lecture1
                  , Lecture2
                  , Lecture3
+                 , Lecture4
   build-depends:   base >= 4.7 && < 5
                  , random
   -- NOTE(ejconlon) Enable this and commit to cabal sandbox to use doctest
