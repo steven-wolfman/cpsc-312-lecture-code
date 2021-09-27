@@ -74,7 +74,9 @@ way `Double` arithmetic works, the result is off by a little bit, as in the test
 > -- >>> toList (slDouble slManyElt)
 > -- [5.0,2.0,0.0,6.4,0.0,0.0,0.0,2.0]
 > slDouble :: SparseList -> SparseList
-> slDouble _ = undefined 
+> slDouble Empty = Empty 
+> slDouble (OneAndRest d sl) = OneAndRest (2*d) (slDouble sl)
+> slDouble (SkipAndRest n sl) = SkipAndRest n (slDouble sl)
 
 > -- >>> slSquare Empty
 > -- Empty
@@ -82,7 +84,10 @@ way `Double` arithmetic works, the result is off by a little bit, as in the test
 > -- >>> toList (slSquare slManyElt)
 > -- [6.25,1.0,0.0,10.240000000000002,0.0,0.0,0.0,1.0]
 > slSquare :: SparseList -> SparseList
-> slSquare _ = undefined
+> slSquare Empty = Empty
+> slSquare (OneAndRest d sl) = OneAndRest (d^2) (slSquare sl)
+> slSquare (SkipAndRest n sl) = SkipAndRest n (slSquare sl)
+
 
 
 Abstracting Behaviour
@@ -94,17 +99,22 @@ that difference into a function.
 
 Think carefully as you go as well to see if we're missing anything!
 
-> slMap :: SparseList -> SparseList
-> slMap _ = undefined
+> slMap :: (Double -> Double) -> SparseList -> SparseList
+> slMap _ Empty = Empty 
+> slMap f (OneAndRest d sl) = OneAndRest (f d) (slMap f sl)
+> slMap f (SkipAndRest n sl) = SkipAndRest n (slMap f sl)
+
 
 
 Now, let's redefine `slDouble` and `slSquare`:
 
+
 > slDouble' :: SparseList -> SparseList
-> slDouble' = undefined 
+> slDouble' = slMap (* 2)
+> --  where double n = 2*n
 
 > slSquare' :: SparseList -> SparseList
-> slSquare' = undefined 
+> slSquare' = slMap (^2)
 
 
 
@@ -114,8 +124,8 @@ Catching All the Cases
 What about this function:
 
 > -- | Adds 1 to each element of a SparseList.
-> add1SL :: SparseList -> SparseList
-> add1SL _ = undefined
+> slAdd1 :: SparseList -> SparseList
+> slAdd1 _ = undefined
 
 Will our `slMap` function handle it correctly? If not, what do we need to change?
 
