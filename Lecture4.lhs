@@ -102,7 +102,10 @@ Think carefully as you go as well to see if we're missing anything!
 > slMap :: (Double -> Double) -> SparseList -> SparseList
 > slMap _ Empty = Empty 
 > slMap f (OneAndRest d sl) = OneAndRest (f d) (slMap f sl)
-> slMap f (SkipAndRest n sl) = SkipAndRest n (slMap f sl)
+> slMap f (SkipAndRest n sl) | f0 == 0 = SkipAndRest n (slMap f sl)
+>                            | n <= 1 = OneAndRest f0 (slMap f sl)
+>                            | otherwise = OneAndRest f0 (slMap f (SkipAndRest (n-1) sl))
+>   where f0 = f 0
 
 
 
@@ -125,7 +128,14 @@ What about this function:
 
 > -- | Adds 1 to each element of a SparseList.
 > slAdd1 :: SparseList -> SparseList
-> slAdd1 _ = undefined
+> slAdd1 Empty = Empty
+> slAdd1 (OneAndRest d sl) = OneAndRest (d+1) (slAdd1 sl)
+> slAdd1 (SkipAndRest n sl) | n <= 1 = OneAndRest 1 (slAdd1 sl)
+>                           | otherwise = OneAndRest 1 (slAdd1 (SkipAndRest (n-1) sl))
+> -- slAdd1 (SkipAndRest n sl) = slReplicate (max 1 n) (0+1) ++ slAdd1 sl -- would work with slReplicate AND sl++
+
+> slAdd1' :: SparseList -> SparseList
+> slAdd1' = slMap (+1)
 
 Will our `slMap` function handle it correctly? If not, what do we need to change?
 
@@ -225,7 +235,7 @@ Here are some example values:
 Let's define some functions that operate on `ProVal`s. (Or, technically, they will
 operate on actual types, like `ProVal a`, `ProVal b`, or `ProVal Char`.)
 
-(*Three exercises!*)
+(*Three exercises!* Let's do at least the first together!)
 
 
 More Practice with Making/Using Types
