@@ -1,6 +1,6 @@
 ---
 number: 5
-title: A Few Parametric Polymorphism Games and Ad Hoc Polymorphism with Type Classes
+title: Ad Hoc Polymorphism with Type Classes
 published: 2021-10-04
 exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16998
 ---
