@@ -53,7 +53,7 @@ Using Truthy
 Let's create our own truthy `if`:
 
 > iffy :: Truthy c => c -> a -> a -> a
-> iffy _ _ _ = undefined
+> iffy condition thenExp elseExp = if (asBool condition) then thenExp else elseExp
 
 Our signature says "`iffy`'s first argument is any value *that is `Truthy`*".
 So, anything before the `=>` is a constraint on what would otherwise be 
@@ -72,7 +72,7 @@ Then, we want to be able to call on `iffy` like this:
 > -- divide-by-zero exception for a 0 on bottom, it produces
 > -- Nothing. 
 > myDiv :: Int -> Int -> Maybe Int
-> myDiv top bottom = undefined -- define using iffy!
+> myDiv top bottom = iffy bottom (Just (top `div` bottom)) Nothing
 
 Haskell requires us to *explicitly* say if a type is an instance of a class.
 Let's makes `Int`s truthy!
@@ -82,8 +82,9 @@ Let's makes `Int`s truthy!
 >   -- Remember that it's Int that's the Truthy thing here.
 >   -- So, we should replace the Truthy class's type variable
 >   -- with Int.
->   -- asBool :: ??
->   asBool = undefined
+>   asBool :: Int -> Bool
+>   asBool 0 = False
+>   asBool _ = True
 
 
 (*Two Exercises*)[^different]
@@ -195,6 +196,8 @@ That is, what's the first thing you do to the list of `Int`s? What's the next? E
 > hasMSWin = undefined
 
 (*Exercise.*)
+
+**TODO:** continue next time from here!
 
 
 > isMSWin, isMSLoss, isMSTie, isMSComplete :: MSState -> Bool 
