@@ -233,11 +233,14 @@ Getting the Next Move
 Taking one move means (1) taking a number for yourself and
 (2) making it your opponent's turn. Note: `delete :: Eq a => a -> [a] -> [a]` 
 removes the first occurrence of its first argument from its second.
+We'll also describe the move in English for clarity.
 
-> nextMSStates :: MSState -> [MSState]
+> type Move a = (String, a) -- a "type synonym" like String meaning [Char]
+>
+> nextMSStates :: MSState -> [Move MSState]
 > nextMSStates ms | isMSComplete ms = []
 > nextMSStates (MSState pool me you) = 
->   map (\choice -> MSState (delete choice pool) you (choice:me)) pool
+>   map (\choice -> ("Take " ++ show choice, MSState (delete choice pool) you (choice:me))) pool
 
 
 Exploring the Whole Game
@@ -255,7 +258,7 @@ Now, we can define a function to construct the game tree:
 
 > constructMSGameTree :: MSState -> GameTree MSState
 > constructMSGameTree ms =
->   GameTree ms (map constructMSGameTree (nextMSStates ms))
+>   GameTree ms (map constructMSGameTree (map snd (nextMSStates ms)))
 
 In fact, we can construct the *entire* game tree:
 
@@ -331,11 +334,12 @@ Now we're ready to pick our move:
 > -- possible outcome in the given game tree (i.e., as high a 
 > -- value as possible). Produces Nothing if there are no further
 > -- moves to take.
-> pickBestMSMove :: GameTree MSState -> Maybe MSState
-> pickBestMSMove (GameTree _ []) = Nothing 
-> pickBestMSMove (GameTree _ moves) = 
->   case argmin getGTMSValue moves of
->     GameTree state _ -> Just state
+> pickBestMSMove :: MSState -> Maybe (Move MSState)
+> pickBestMSMove state = case nextMSStates state of
+>   [] -> Nothing
+>   moves -> Just (argmin getMoveValue moves)
+>     where getMoveValue move = 
+>             getGTMSValue (constructMSGameTree (snd move))
 
 
 Some Utility Functions
@@ -355,9 +359,9 @@ We can help the computer take a move like this:
 > -- and does the tree contsruction itself and returns a
 > -- plain MSState.. but produces an error if called on a
 > -- terminal state.
-> pickBestMSMove' :: MSState -> MSState 
+> pickBestMSMove' :: MSState -> Move MSState 
 > pickBestMSMove' state = 
->   maybe undefined id (pickBestMSMove (constructMSGameTree state))
+>   maybe undefined id (pickBestMSMove state)
 
 And, let's know when a state is a win, loss, or tie:
 
@@ -428,17 +432,14 @@ The game *tree* value (as opposed to state).
 
 `argmin` never mentioned `MSState` anyway. So, that takes us to picking the best move:
 
-> -- pickBestMove :: GameState a => GameTree a -> Maybe a
-> pickBestMove (GameTree _ []) = Nothing 
-> pickBestMove (GameTree _ moves) = 
->   undefined
+> -- pickBestMove :: GameState a => GameTree a -> Maybe (Move a)
+> pickBestMove state = undefined
 
 One of our utility functions is entirely specific to `MSState`,
 but the second is not:
 
-> -- pickBestMove' :: GameState a => a -> a 
-> pickBestMove' state = 
->   undefined
+> -- pickBestMove' :: GameState a => a -> Move a 
+> pickBestMove' state = undefined
 
 
 The Game of Nim
