@@ -171,7 +171,7 @@ Let's start by finding all the sequences of three numbers a player has.
 We'll solve a more general problem because it's easier to do:
 
 > -- | Produce all sublists of exactly the given length
-> allSubLists :: Int -> [a] -> [[a]]
+> allSubLists :: Int -> ([a] -> [[a]])
 > allSubLists 0 _ = [[]] -- ONE sublist of length zero
 > allSubLists _ [] = [] -- FAILURE; too few or too many elements!
 > allSubLists n (a:as)
@@ -193,17 +193,16 @@ Try to do it in one, short line. I recommend figuring it out from "right to left
 That is, what's the first thing you do to the list of `Int`s? What's the next? Etc.
 
 > hasMSWin :: [Int] -> Bool
-> hasMSWin = undefined
+> hasMSWin ns = not (null (filter (== 15) (map sum (all3Lists ns))))
 
 (*Exercise.*)
-
-**TODO:** continue next time from here!
 
 
 > isMSWin, isMSLoss, isMSTie, isMSComplete :: MSState -> Bool 
 > isMSWin (MSState _ ns _) = hasMSWin ns
 > isMSLoss (MSState _ _ ns) = hasMSWin ns
 >
+> -- if it's not a win or loss, then isMSTie tells us if it's a tie
 > isMSTie (MSState [] _ _) = True
 > isMSTie _ = False
 >
@@ -235,10 +234,14 @@ Taking one move means (1) taking a number for yourself and
 removes the first occurrence of its first argument from its second.
 We'll also describe the move in English for clarity.
 
+```haskell
+-- The definition of String:
+type String = [Char]
+```
+
 > type Move a = (String, a) -- a "type synonym" like String meaning [Char]
 >
 > nextMSStates :: MSState -> [Move MSState]
-> nextMSStates ms | isMSComplete ms = []
 > nextMSStates (MSState pool me you) = 
 >   map (\choice -> ("Take " ++ show choice, MSState (delete choice pool) you (choice:me))) pool
 
@@ -297,7 +300,7 @@ we assume the state's value is 0. This shouldn't happen anyway!)
 > getGTMSValue (GameTree state []) =
 >   case getMSValue state of
 >     Just v  -> v
->     Nothing -> 0
+>     Nothing -> 0 -- unnecessary case
 > getGTMSValue (GameTree _ nexts) =
 >   negate (minimum (map getGTMSValue nexts))
 
@@ -378,6 +381,8 @@ Let's play!
 
 What *is* a Game?
 =================
+
+*TODO: continue here!!*
 
 OK, that's a big question for [another](https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-course&dept=CPSC&course=427) [course](https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-course&dept=DMED&course=503).
 In our case, however, a "game state" for a two-player, turn-based game is really anything that:
