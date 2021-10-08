@@ -1,6 +1,6 @@
 ---
 number: 6
-title: Quake with Fear Before INPUT/OUTPUT!!
+title: I/O, Yay!!
 published: 2021-10-08
 exercises: https://ca.prairielearn.com/pl/course_instance/2333/assessment/16998
 ---
