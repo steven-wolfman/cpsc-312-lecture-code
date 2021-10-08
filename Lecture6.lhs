@@ -140,7 +140,7 @@ Our Game(s) With IO
 
 We should really make a version of our game(s) with a user interface. For lack of time, we're just going to give it to you for you to look through rather than go through it step-by-step. Try it out and investigate the code!
 
-Here's a [playable game](/lecture-supplement/LectureIOGame.html) (minus one piece we suggest as an exercise for you!).
+Here's a [playable game](/lecture-supplements/LectureIOGame.html) (minus one piece we suggest as an exercise for you!).
 
 
 
