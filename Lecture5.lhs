@@ -394,58 +394,70 @@ In our case, however, a "game state" for a two-player, turn-based game is really
 Could we rewrite our code for `pickBestMove` to use a type class and work on *any* game?
 
 
-```haskell
-class GameState a where
-  -- | Produces 1 for a win, -1 for a loss, 0 for a tie,
-  -- and Nothing for a not-yet-complete game.
-  getGameStateValue :: ??
-
-  initGameState :: ??
-
-  -- | Produces a list of the next game states after the current one.
-  -- If the game is complete, the list is empty.
-  nextGameStates :: ??
-```
+> class GameState a where
+>   -- | Produces 1 for a win, -1 for a loss, 0 for a tie,
+>   -- and Nothing for a not-yet-complete game.
+>   getGameStateValue :: a -> Maybe Double
+>
+>   initGameState :: a
+> 
+>   -- | Produces a list of the moves and next game states after the current one.
+>   -- If the game is complete, the list is empty.
+>   nextGameStates :: a -> [Move a]
 
 We'd best make `MSState` an instance! Not coincidentally, we happen to
 have already written all these functions above:
 
-```haskell
-instance GameState MSState where
-  getGameStateValue = undefined
-  initGameState = undefined
-  nextGameStates = undefined
-```
+> instance GameState MSState where
+>   getGameStateValue = getMSValue
+>   initGameState = initMSState
+>   nextGameStates = nextMSStates
 
 Now construct the game tree:
 
-> -- constructGameTree :: GameState a => a -> GameTree a
+> constructGameTree :: GameState a => a -> GameTree a
 > constructGameTree state = 
->   undefined
+>   GameTree state (map constructGameTree (map snd (nextGameStates state)))
 
 The entire game tree.. **of whatever type of game you're playing**!
 This is a polymorphic value, much like `initGameState` is.
 
-> -- gameTree :: GameState a => GameTree a
-> gameTree = undefined
+> gameTree :: GameState a => GameTree a
+> gameTree = constructGameTree initGameState
 
 The game *tree* value (as opposed to state).
 
-> -- getGameTreeValue :: GameState a => GameTree a -> Double
+> getGameTreeValue :: GameState a => GameTree a -> Double
 > getGameTreeValue (GameTree state []) =
->   undefined
+>   case getGameStateValue state of
+>     Just v  -> v
+>     Nothing -> 0 -- unnecessary case
+> getGameTreeValue (GameTree _ nexts) =
+>   negate (minimum (map getGameTreeValue nexts))
 
 `argmin` never mentioned `MSState` anyway. So, that takes us to picking the best move:
 
-> -- pickBestMove :: GameState a => a -> Maybe (Move a)
-> pickBestMove state = undefined
+> pickBestMove :: GameState a => a -> Maybe (Move a)
+> pickBestMove state = case nextGameStates state of
+>   [] -> Nothing
+>   moves -> Just (argmin getMoveValue moves)
+>     where getMoveValue move = 
+>             getGameTreeValue (constructGameTree (snd move))
 
 One of our utility functions is entirely specific to `MSState`,
 but the second is not:
 
-> -- pickBestMove' :: GameState a => a -> Move a 
-> pickBestMove' state = undefined
+> pickBestMove' :: GameState a => a -> Move a 
+> pickBestMove' state = 
+>   maybe undefined id (pickBestMove state)
 
+For reference, here is the implementation of `maybe`:
+
+```haskell
+maybe :: b -> (a -> b) -> Maybe a -> b
+maybe _ f (Just a) = f a
+maybe b _ Nothing = b
+```
 
 The Game of Nim
 ===============
