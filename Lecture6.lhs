@@ -27,7 +27,7 @@ A monad in Haskell is an instance `m` of the `Monad` type class. The type class 
 You Can Check Out Anytime You Like, But You Can Never Leave[^hotelcalifornia]
 -----------------------------------------------------------
 
-If you take a close look at the signatures of `return :: m a` and `(>>=) :: m a -> (a -> m b) -> m b`, you'll notice:
+If you take a close look at the signatures of `return :: a -> m a` and `(>>=) :: m a -> (a -> m b) -> m b`, you'll notice:
 
 1. It's easy to "get a value out" of `m` and do something with it. You can use `ma >>= f`. Now, `f` can access the (or every) `a` inside the `ma` "container" and act on it.
 
