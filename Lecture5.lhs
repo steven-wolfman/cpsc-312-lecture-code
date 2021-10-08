@@ -437,7 +437,7 @@ The game *tree* value (as opposed to state).
 
 `argmin` never mentioned `MSState` anyway. So, that takes us to picking the best move:
 
-> -- pickBestMove :: GameState a => GameTree a -> Maybe (Move a)
+> -- pickBestMove :: GameState a => a -> Maybe (Move a)
 > pickBestMove state = undefined
 
 One of our utility functions is entirely specific to `MSState`,
