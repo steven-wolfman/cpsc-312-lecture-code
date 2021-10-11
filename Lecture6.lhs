@@ -61,6 +61,8 @@ ma >> mb   = ma >>= (\_ -> mb)
 Our First Monad Instance
 ------------------------
 
+*TODO:* continue from here on Wednesday
+
 Here's an updated version of `ProVal`:
 
 ```haskell
@@ -85,7 +87,7 @@ Why Would You Bother, or, What's So Scary About I/O?
 
 The trouble with I/O (and side effects in general) in Haskell are (1) they aren't functional and (2) lazy evaluation means we don't even know when (or *if*) they happen.
 
-But, what if we made a new monad called `IO`? An `IO a` is a container that describes "an action, possibly with side effects that, when run, produces an `a` value".
+But, what if we made a new monad called `IO`? An `IO a` as a container is "an action, possibly with side effects that, when run, produces an `a` value".
 
 For the `IO` monad, `return x` makes a "fake" action that just produces `x` when run.
 
