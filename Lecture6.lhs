@@ -79,6 +79,25 @@ instance Monad ProVal where
   ...
 ```
 
+Here are our three solutions from class using a plain helper (commented out), a local helper with `where` (commented out), and a `case` expression:
+
+```haskell
+-- assembleNewProVal :: [String] -> ProVal b -> ProVal b
+-- assembleNewProVal aComments (ProVal b bComments) = ProVal b (aComments ++ bComments)
+
+instance Monad ProVal where
+  return :: a -> ProVal a
+  return x = ProVal x []
+  
+--   (>>=) :: ProVal a -> (a -> ProVal b) -> ProVal b
+--   (ProVal a aComments) >>= f = helper (f a)
+--     where helper (ProVal b bComments) = ProVal b (aComments ++ bComments)
+    
+  (>>=) :: ProVal a -> (a -> ProVal b) -> ProVal b
+  (ProVal a aComments) >>= f = case f a of
+                                 ProVal b bComments -> ProVal b (aComments ++ bComments)
+```
+
 (*Two exercises.*)
 
 
@@ -130,7 +149,8 @@ Now, let's make this file a program that reads a user's name and greets them, us
 > -- | Get a user's name and greet them.
 > -- We can use our helpers above to write this.
 > greet :: IO ()
-> greet = undefined
+> greet = readName >>= sayHelloForever
+>   where sayHelloForever name = sayHello name >> sayHelloForever name
 
 We'll just run it in `ghci`.[^runningInGHC]
 
@@ -170,7 +190,7 @@ Here's `hasMSWin` that determines if a list of numbers contains any three that s
 Let's write `hasMSWin' = ...`, where we use function composition to create a chain of functions on the right side:
 
 > hasMSWin' :: [Int] -> Bool
-> hasMSWin' = undefined
+> hasMSWin' = not . null . filter (== 15) . map sum . all3Lists
 
 The new version means the same thing. Is is easier to read? Is it clearer?
 
