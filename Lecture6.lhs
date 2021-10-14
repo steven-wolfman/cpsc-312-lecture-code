@@ -114,8 +114,9 @@ For the `IO` monad, `return x` makes a "fake" action that just produces `x` when
 
 + runs `ioa` *first*, 
 + gets the `a` it produces,
-+ feeds it to `f`, and
-+ runs the action that `f` returns *second*.
++ feeds it to `f`,
++ runs the action that `f` returns *second*, and
++ produces as its final value whatever that second action produced.
 
 Did you see the trick there? `>>=` solves our two problems above: (1) It produces an action *value* without actually performing the action. No side effects! (2) But that value *represents* an action that does what we want *in the correct order*.
 
